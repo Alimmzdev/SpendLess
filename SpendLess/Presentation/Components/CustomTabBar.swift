@@ -39,9 +39,6 @@ struct CustomTabBar: View {
     @Previewable @State var selectedTab: Tab = .home
 
     ZStack {
-        Color(.systemGroupedBackground)
-            .ignoresSafeArea()
-
         VStack {
             Spacer()
             CustomTabBar(selectedTab: $selectedTab)

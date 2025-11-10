@@ -12,20 +12,10 @@ struct SettingsScreen: View {
     
     var body: some View {
         VStack(spacing: 30) {
-            Text("Settings")
-                .font(.largeTitle)
-                .fontWeight(.bold)
             
-            Button("Back") {
-                router.pop(in: .settings) // تب مشخص شد
-            }
-            .buttonStyle(.bordered)
-            
-            Spacer()
         }
         .padding()
         .navigationTitle("Settings")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

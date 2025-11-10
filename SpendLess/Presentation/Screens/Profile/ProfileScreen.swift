@@ -12,20 +12,10 @@ struct ProfileScreen: View {
     
     var body: some View {
         VStack(spacing: 30) {
-            Text("Profile")
-                .font(.largeTitle)
-                .fontWeight(.bold)
             
-            Button("Go Back") {
-                router.pop(in: .profile) // تب مشخص شد
-            }
-            .buttonStyle(.bordered)
-            
-            Spacer()
         }
         .padding()
         .navigationTitle("Profile")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

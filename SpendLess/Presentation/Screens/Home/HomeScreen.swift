@@ -12,33 +12,16 @@ struct HomeScreen: View {
     
     var body: some View {
         VStack(spacing: 30) {
-            Text("Home Screen")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-            
-            VStack(spacing: 16) {
-                Button("Go to Profile") {
-                    router.push(.profile, in: .home) // تب مشخص شد
-                }
-                .buttonStyle(.borderedProminent)
-                
-                Button("Go to Settings") {
-                    router.push(.settings, in: .home)
-                }
-                .buttonStyle(.bordered)
-            }
-            
-            Spacer()
+        
         }
         .padding()
         .navigationTitle("Home")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
     NavigationStack {
         HomeScreen()
-            .environment(Router()) // برای پیش‌نمایش
+            .environment(Router())
     }
 }

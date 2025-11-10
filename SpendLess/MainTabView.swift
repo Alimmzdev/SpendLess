@@ -14,48 +14,63 @@ struct MainTabView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            NavigationStack(path: router.path(for: selectedTab)) {
-                rootView(for: selectedTab)
-                    .navigationDestination(for: AppRoute.self) { route in
-                        destination(for: route)
-                    }
-            }
-            // Make sure each time the tab changes, its stack is reset
-            .onChange(of: selectedTab) { _, newTab in
-                router.popToRoot(in: newTab)
-            }
-            .onAppear {
-                router.popToRoot(in: selectedTab)
+            HStack(spacing: 0) {
+                if shouldShowSidebar {
+                    CustomSideBar(selectedTab: $selectedTab)
+                }
+
+                NavigationStack(path: router.path(for: selectedTab)) {
+                    rootView(for: selectedTab)
+                        .navigationDestination(for: AppRoute.self) { route in
+                            destination(for: route)
+                        }
+                }
+                .onAppear { router.popToRoot(in: selectedTab) }
+                .onChange(of: selectedTab) { _, newTab in
+                    router.popToRoot(in: newTab)
+                }
             }
 
-            CustomTabBar(selectedTab: $selectedTab)
+            if shouldShowTabBar {
+                CustomTabBar(selectedTab: $selectedTab)
+            }
         }
         .ignoresSafeArea(edges: .bottom)
     }
 
-    // MARK: - Root Views
+    private var shouldShowSidebar: Bool {
+        #if os(iOS)
+        UIDevice.current.userInterfaceIdiom == .pad
+        #elseif os(macOS)
+        true
+        #else
+        false
+        #endif
+    }
+
+    private var shouldShowTabBar: Bool {
+        #if os(iOS)
+        UIDevice.current.userInterfaceIdiom == .phone
+        #else
+        false
+        #endif
+    }
+
     @ViewBuilder
     private func rootView(for tab: Tab) -> some View {
         switch tab {
-        case .home:
-            HomeScreen()
-        case .profile:
-            ProfileScreen()
-        case .settings:
-            SettingsScreen()
+        case .home: HomeScreen()
+        case .profile: ProfileScreen()
+        case .settings: SettingsScreen()
         }
     }
 
-    // MARK: - Destination Views
     @ViewBuilder
     private func destination(for route: AppRoute) -> some View {
         switch route {
-        case .home:
-            HomeScreen()
-        case .profile:
-            ProfileScreen()
-        case .settings:
-            SettingsScreen()
+        case .home: HomeScreen()
+        case .profile: ProfileScreen()
+        case .settings: SettingsScreen()
         }
     }
 }
