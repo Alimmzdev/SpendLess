@@ -15,7 +15,6 @@ struct ProfileScreen: View {
             
         }
         .padding()
-        .navigationTitle("Profile")
     }
 }
 

@@ -15,7 +15,6 @@ struct SettingsScreen: View {
             
         }
         .padding()
-        .navigationTitle("Settings")
     }
 }
 

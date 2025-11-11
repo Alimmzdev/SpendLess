@@ -32,6 +32,7 @@ struct CustomTabBar: View {
                 }
             }
         }
+        .background(.background)
     }
 }
 

@@ -35,6 +35,7 @@ struct MainTabView: View {
                 CustomTabBar(selectedTab: $selectedTab)
             }
         }
+        .padding(.bottom,12)
         .ignoresSafeArea(edges: .bottom)
     }
 
@@ -61,7 +62,8 @@ struct MainTabView: View {
         switch tab {
         case .home: HomeScreen()
         case .profile: ProfileScreen()
-        case .settings: SettingsScreen()
+        case .reports: SettingsScreen()
+        case .budgets: SettingsScreen()
         }
     }
 

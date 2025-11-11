@@ -9,14 +9,16 @@ import Foundation
 
 enum Tab: String, CaseIterable, Hashable {
     case home = "house"
+    case reports = "chart.bar.xaxis"
+    case budgets = "wallet.bifold.fill"
     case profile = "person.crop.circle"
-    case settings = "gearshape"
     
     var title: String {
         switch self {
         case .home: return "Home"
         case .profile: return "Profile"
-        case .settings: return "Settings"
+        case .budgets: return "Budgets"
+        case .reports: return "Reports"
         }
     }
 }
